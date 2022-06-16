@@ -45,7 +45,7 @@ public class Demo2 {
     static Random RAND = new Random();
     static int MAX_CATEGORIES = 5;
     static int DOCUMENT_COUNTER = 0;
-    static int DOCUMENTS_TO_ADD = 1000;
+    static int DOCUMENTS_TO_ADD = 100000;
 
     static void addDoc(IndexWriter w) throws IOException {
         Document doc = new Document();
