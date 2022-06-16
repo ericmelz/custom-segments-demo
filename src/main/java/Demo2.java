@@ -28,6 +28,36 @@ public class Demo2 {
      * Custom Segments are stored in the Lucene index - a single Lucene document represents a Custom Segment
      * Custom segments are matched against pages by using the category and keyword values in a page to match
      * custom segments.
+     *
+     * Example:
+     * Using string IAB categories (e.g., "IAB9") and 100K documents in the index, we see latencies of about 9ms:
+     *
+     * query=IAB5, IAB1
+     * match duration 0 is 37402 microseconds
+     * Found 10 hits.
+     * 1. 	Document 105	IAB5, IAB1
+     * 2. 	Document 132	IAB1, IAB5
+     * 3. 	Document 257	IAB1, IAB5
+     * 4. 	Document 647	IAB5, IAB1
+     * 5. 	Document 1022	IAB5, IAB1
+     * 6. 	Document 1270	IAB5, IAB1
+     * 7. 	Document 1802	IAB1, IAB5
+     * 8. 	Document 2491	IAB1, IAB5
+     * 9. 	Document 2599	IAB1, IAB5
+     * 10. 	Document 2868	IAB5, IAB1
+     *
+     * match duration 1 is 8949 microseconds
+     * Found 10 hits.
+     * 1. 	Document 105	IAB5, IAB1
+     * 2. 	Document 132	IAB1, IAB5
+     * 3. 	Document 257	IAB1, IAB5
+     * 4. 	Document 647	IAB5, IAB1
+     * 5. 	Document 1022	IAB5, IAB1
+     * 6. 	Document 1270	IAB5, IAB1
+     * 7. 	Document 1802	IAB1, IAB5
+     * 8. 	Document 2491	IAB1, IAB5
+     * 9. 	Document 2599	IAB1, IAB5
+     * 10. 	Document 2868	IAB5, IAB1
      */
     static StandardAnalyzer ANALYZER = new StandardAnalyzer();
     static Directory INDEX = new ByteBuffersDirectory();
