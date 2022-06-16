@@ -103,7 +103,7 @@ public class Demo2 {
     }
 
     Query makeQuery() throws ParseException {
-        /**
+        /*
          * Generate a query consisting of some IAB categories
          */
         int categoriesToAdd = RAND.nextInt(MAX_CATEGORIES);
@@ -121,7 +121,7 @@ public class Demo2 {
         return MultiFieldQueryParser.parse(queries, fields, ANALYZER);
     }
 
-    IndexSearcher openSearcher(Query q) throws IOException {
+    IndexSearcher openSearcher() throws IOException {
         IndexReader reader = DirectoryReader.open(INDEX);
         return new IndexSearcher(reader);
     }
@@ -155,7 +155,7 @@ public class Demo2 {
         Demo2 demo2 = new Demo2();
         demo2.setupIndex();
         Query q = demo2.makeQuery();
-        IndexSearcher searcher = demo2.openSearcher(q);
+        IndexSearcher searcher = demo2.openSearcher();
         ScoreDoc[] hits = demo2.search(searcher, q);
         demo2.display(hits, searcher);
         ScoreDoc[] hits2 = demo2.search(searcher, q);
