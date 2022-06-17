@@ -7,7 +7,6 @@ import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
@@ -122,15 +121,10 @@ public class Demo3 {
          * Generate a query consisting of some IAB categories
          */
         int categoriesToAdd = RAND.nextInt(MAX_CATEGORIES + 1);
-        String[] fields = new String[categoriesToAdd];
         String[] queries = new String[categoriesToAdd];
         List<String> shuffledCategories = Arrays.asList(IAB_CATEGORIES);
         Collections.shuffle(shuffledCategories);
-        for (int i = 0; i < categoriesToAdd; i++) {
-            String category = IAB_CATEGORIES[i];
-            queries[i] = category;
-            fields[i] = "category";
-        }
+        System.arraycopy(IAB_CATEGORIES, 0, queries, 0, categoriesToAdd);
         String joinedQuery = String.join(", ", queries);
         System.out.println("query=" + joinedQuery);
         return new QueryParser("category", ANALYZER).parse(queries[0]);
