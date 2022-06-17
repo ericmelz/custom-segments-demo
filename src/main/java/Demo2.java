@@ -72,7 +72,8 @@ public class Demo2 {
     static int SEARCH_COUNTER = 0;
     static String[] IAB_CATEGORIES = {"IAB1", "IAB2", "IAB3", "IAB4", "IAB5", "IAB6", "IAB7", "IAB8", "IAB9", "IAB10"};
     static Random RAND = new Random();
-    static int MAX_CATEGORIES = 5;
+//    static int MAX_CATEGORIES = 5;
+    static int MAX_CATEGORIES = 1;
     static int DOCUMENT_COUNTER = 0;
     static int DOCUMENTS_TO_ADD = 100000;
 
@@ -83,7 +84,7 @@ public class Demo2 {
         DOCUMENT_COUNTER++;
 
         // Add a few IAB categories
-        int categoriesToAdd = RAND.nextInt(MAX_CATEGORIES);
+        int categoriesToAdd = RAND.nextInt(MAX_CATEGORIES + 1);
         List<String> shuffledCategories = Arrays.asList(IAB_CATEGORIES);
         Collections.shuffle(shuffledCategories);
         for (int i = 0; i < categoriesToAdd; i++) {
@@ -105,7 +106,7 @@ public class Demo2 {
         /*
          * Generate a query consisting of some IAB categories
          */
-        int categoriesToAdd = RAND.nextInt(MAX_CATEGORIES);
+        int categoriesToAdd = RAND.nextInt(MAX_CATEGORIES + 1);
         String[] fields = new String[categoriesToAdd];
         String[] queries = new String[categoriesToAdd];
         List<String> shuffledCategories = Arrays.asList(IAB_CATEGORIES);
@@ -159,5 +160,7 @@ public class Demo2 {
         demo2.display(hits, searcher);
         ScoreDoc[] hits2 = demo2.search(searcher, q);
         demo2.display(hits2, searcher);
+        ScoreDoc[] hits3 = demo2.search(searcher, q);
+        demo2.display(hits3, searcher);
     }
 }
