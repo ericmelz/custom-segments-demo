@@ -32,47 +32,48 @@ public class Demo3 {
      * Example:
      * Using string IAB categories (e.g., "i9") and 100K documents in the index, we see latencies of about 1ms:
      *
-     There are 100000 documents in the index.
-
-     query=i10, i4, i2
-     match duration 0 is 15343 microseconds
-     Found 10 hits.
-     1. 	Document 0
-     2. 	Document 5
-     3. 	Document 6
-     4. 	Document 14
-     5. 	Document 15
-     6. 	Document 16
-     7. 	Document 17
-     8. 	Document 18
-     9. 	Document 30
-     10. 	Document 41
-
-     match duration 1 is 1120 microseconds
-     Found 10 hits.
-     1. 	Document 0
-     2. 	Document 5
-     3. 	Document 6
-     4. 	Document 14
-     5. 	Document 15
-     6. 	Document 16
-     7. 	Document 17
-     8. 	Document 18
-     9. 	Document 30
-     10. 	Document 41
-
-     match duration 2 is 917 microseconds
-     Found 10 hits.
-     1. 	Document 0
-     2. 	Document 5
-     3. 	Document 6
-     4. 	Document 14
-     5. 	Document 15
-     6. 	Document 16
-     7. 	Document 17
-     8. 	Document 18
-     9. 	Document 30
-     10. 	Document 41	     */
+     * There are 100000 documents in the index.
+     *
+     * query=i8
+     * match duration 0 is 17965 microseconds
+     * Found 10 hits.
+     * 1. 	Document 3	i8, i4
+     * 2. 	Document 13	i6, i8, i2
+     * 3. 	Document 23	i10, i8
+     * 4. 	Document 31	i8
+     * 5. 	Document 33	i8, i7, i1
+     * 6. 	Document 47	i8, i10
+     * 7. 	Document 56	i8
+     * 8. 	Document 58	i8, i2
+     * 9. 	Document 69	i9, i8, i2
+     * 10. 	Document 76	i8, i10
+     *
+     * match duration 1 is 1058 microseconds
+     * Found 10 hits.
+     * 1. 	Document 3	i8, i4
+     * 2. 	Document 13	i6, i8, i2
+     * 3. 	Document 23	i10, i8
+     * 4. 	Document 31	i8
+     * 5. 	Document 33	i8, i7, i1
+     * 6. 	Document 47	i8, i10
+     * 7. 	Document 56	i8
+     * 8. 	Document 58	i8, i2
+     * 9. 	Document 69	i9, i8, i2
+     * 10. 	Document 76	i8, i10
+     *
+     * match duration 2 is 973 microseconds
+     * Found 10 hits.
+     * 1. 	Document 3	i8, i4
+     * 2. 	Document 13	i6, i8, i2
+     * 3. 	Document 23	i10, i8
+     * 4. 	Document 31	i8
+     * 5. 	Document 33	i8, i7, i1
+     * 6. 	Document 47	i8, i10
+     * 7. 	Document 56	i8
+     * 8. 	Document 58	i8, i2
+     * 9. 	Document 69	i9, i8, i2
+     * 10. 	Document 76	i8, i10
+     */
     static StandardAnalyzer ANALYZER = new StandardAnalyzer();
     static Directory INDEX = new ByteBuffersDirectory();
     static IndexWriterConfig CONFIG = new IndexWriterConfig();
@@ -103,7 +104,7 @@ public class Demo3 {
         Collections.shuffle(shuffledCategories);
         for (int i = 0; i < categoriesToAdd; i++) {
             String category = IAB_CATEGORIES[i];
-            doc.add(new StringField("category", category, Field.Store.NO));
+            doc.add(new StringField("category", category, Field.Store.YES));
         }
 
         w.addDocument(doc);
